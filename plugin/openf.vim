@@ -1,9 +1,8 @@
 function! OpenF()
-    echohl Normal
-        let l:path=expand("%:p:h")
-        echo l:path
+    echohl WarningMsg
+        echo "PATH:" . expand("%:p:h")
     echohl None
     echohl Question
-        let l:filename=input("file name")
+        let l:filename=input("File Name:")
     echohl None
 endfunction
