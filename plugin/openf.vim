@@ -1,6 +1,22 @@
 if !exists('g:BasePath')
     let g:BasePath = expand("%:p:h")
 endif
+let g:testai=1
+function! ChangeBasePath()
+    echohl PmenuThumb
+        echo "Base    Path:" . g:BasePath
+        echo "Current Path:" . expand("%:p:h")
+    echohl None
+    echohl Question
+        let l:new_base_path=input("New Base Path:")
+    echohl None
+
+    if empty(l:new_base_path)
+        return 0
+    endif
+
+    let g:BasePath = l:new_base_path
+endfunction
 
 function! OpenF()
     let l:current_path=expand("%:p:h")
