@@ -18,7 +18,18 @@ function! ChangeBasePath()
     let g:BasePath = l:new_base_path
 endfunction
 
+function FindGitRootDir()
+    let l:gitDir=finddir(".git", ".;")
+    if !empty(l:gitDir)
+        let l:pathList=split(l:gitDir, "/")
+        call remove(l:pathList, -1)
+        let g:BasePath="/".join(l:pathList, "/")."/"
+    endif
+endfunction
+
 function! OpenF()
+    call FindGitRootDir()
+
     let l:current_path=expand("%:p:h")
     echohl PmenuThumb
         echo "Base    Path:" . g:BasePath
